@@ -1,0 +1,34 @@
+= AllianceP2P - Beta Wiki =
+
+*With 1.1.0a you need to rehash your files because this version uses new filedatabase*
+
+*Notice for upgrade from 1.1.0 to 1.1.0a -> You need to delete 'db' folder in 'data' and rehash files due to db bug in 1.1.0*
+
+== Latest Changes ==
+ * *v1.1.0a*
+  * Fixed bug: DB bug -> The download doesn't end and shows corrupted file message.
+  * Changed: Tray icon size behaviour.
+  * Fixed bug: Support for Non-English characters doesn't work with Alliance theme.
+  * Removed: Alliance on windows will no longer automatically restart itself. (thanks Kratos)
+
+ * *v1.1.0*
+  * Bug fix: Auto detection of external IP in LAN mode. (thanks Kratos)
+  * Added: Portable mode to linux. (thanks Kratos)
+  * Changed: "Always automatically connect to new friends of friends" to "Always automatically connect to all friends of friends". (thanks Kratos)
+  * Added: Ability for plugins to insert a callback to the debug console. This allows plugins to add their own commands to the console. (thanks Kratos)
+  * Fixed bug: Removing files when scanning is in progress no longer break communication.
+  * Changed: View duplicates works again.
+  * Changed: Display of filesizes in ShareView moved to tooltip.
+  * Changed: DB memory usage reduced for big shares (100k files).
+  * Changed: Improved scanning of removed files.
+  * Changed: Improved database speed.
+  * Fixed bug: BufferOverload when using "send as link to chat" on folder with more than 512 files.
+  * Fixed bug: Several other minor bugs.
+
+ * *v1.0.9*
+  * Added: Display of filesizes in ShareView.
+  * Changed: Database changed to H2.
+  * Fixed bug: BufferOverload when you add folder with more than 512 files at once to download que.
+  * Changed: Some UI elements.
+  * Added: Native OS theme.
+  * Fixed bug: Several other minor bugs.
