@@ -43,35 +43,7 @@
                                     <filler axis="x"/>
                                     <dropdown width="250" minwidth="250" maxwidth="250" id="internal.guiskin">
                                         <option text="Alliance"/>
-                                        <option text="OS Native"/>
-                                        <!--<option text="Autumn"/>-->
-                                        <!--<option text="Business"/>-->
-                                        <!--<option text="Business Black Steel"/>-->
-                                        <!--<option text="Business Blue Steel"/>-->
-                                        <!--<option text="Challenger Deep"/>-->
-                                        <!--<option text="Creme"/>-->
-                                        <!--<option text="Creme Coffee"/>-->
-                                        <!--<option text="Dust"/>-->
-                                        <!--<option text="Dust Coffee"/>-->
-                                        <!--<option text="Emerald Dusk"/>-->
-                                        <!--<option text="Field Of Wheat"/>-->
-                                        <!--<option text="Finding Nemo"/>-->
-                                        <!--<option text="Green Magic"/>-->
-                                        <!--<option text="Magma"/>-->
-                                        <!--<option text="Mango"/>-->
-                                        <!--<option text="Mist Aqua"/>-->
-                                        <!--<option text="Mist Silver"/>-->
-                                        <!--<option text="Moderate"/>-->
-                                        <!--<option text="Nebula"/>-->
-                                        <!--<option text="Nebula Brick Wall"/>-->
-                                        <!--<option text="Office Blue 2007"/>-->
-                                        <!--<option text="Office Silver 2007"/>-->
-                                        <!--<option text="Raven"/>-->
-                                        <!--<option text="Raven Graphite"/>-->
-                                        <!--<option text="Raven Graphite Glass"/>-->
-                                        <!--<option text="Sahara"/>-->
-                                        <!--<option text="Streetlights"/>-->
-                                        <!--<option text="Twilight"/>-->
+                                        <option text="OS Native"/>                                      
                                     </dropdown>
                                 </panel>
                             </cell>
