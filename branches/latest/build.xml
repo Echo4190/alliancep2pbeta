@@ -88,7 +88,6 @@
             <zipfileset src="lib/stendahls-commons.jar" excludes="META-INF/*" />
             <zipfileset src="lib/StendahlsTheme.jar" excludes="META-INF/*" />
             <zipfileset src="lib/swingx-0.8.0.jar" excludes="META-INF/*" />
-            <zipfileset src="lib/substance-lite-feel.jar" excludes="META-INF/*" />
             <zipfileset src="lib/synthetica.jar" excludes="META-INF/*" />
             <zipfileset src="lib/syntheticaBlackStar.jar" excludes="META-INF/*" />
             <manifest>
