@@ -5,7 +5,7 @@
 *Notice for upgrade from 1.1.0 to 1.1.0a -> You need to delete 'db' folder in 'data' and rehash files due to db bug in 1.1.0*
 
 == Latest Changes ==
- * *1.1.0b* * - 2010-02-03
+ * *1.1.0b* - 2010-02-03
   * Fixed bug: Transfer does not end/Part of file corrupted for recently modified files.
   * Fixed bug: NullPointerException for inaccessible shares paths.
 
