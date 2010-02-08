@@ -1,15 +1,17 @@
 = AllianceP2P - Beta Wiki =
 
-*With 1.1.0a you need to rehash your files because this version uses new filedatabase*
-
-*Notice for upgrade from 1.1.0 to 1.1.0a -> You need to delete 'db' folder in 'data' and rehash files due to db bug in 1.1.0*
-
 == Latest Changes ==
- * *1.1.0b* - 2010-02-03
+ * *1.1.0c* - 2010-02-08
+  * Changed: Share counters are now updated in real time.
+  * Changed: More polite share browsing with big amounts of share bases.
+  * Fixed bug: Added limit on how many files/directories we can browse in single directory to prevent BufferOverload.
+
+ * *1.1.0b*
   * Fixed bug: Transfer does not end/Part of file corrupted for recently modified files.
   * Fixed bug: NullPointerException for inaccessible shares paths.
 
  * *v1.1.0a*
+  * *You need to rehash your files because this version uses new filedatabase*
   * Fixed bug: DB bug -> The download doesn't end and shows corrupted file message.
   * Changed: Tray icon size behaviour.
   * Fixed bug: Support for Non-English characters doesn't work with Alliance theme.
@@ -30,6 +32,7 @@
   * Fixed bug: Several other minor bugs.
 
  * *v1.0.9*
+  * *You need to rehash your files because this version uses new filedatabase*
   * Added: Display of filesizes in ShareView.
   * Changed: Database changed to H2.
   * Fixed bug: BufferOverload when you add folder with more than 512 files at once to download que.
