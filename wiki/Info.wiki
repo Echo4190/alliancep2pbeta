@@ -1,6 +1,10 @@
 = AllianceP2P - Beta Wiki =
 
 == Latest Changes ==
+ * *1.1.0d* - 2010-02-15
+  * Changed: More polite DB shutdown.
+  * Added: DB auto-backup/restore.
+
  * *1.1.0c* - 2010-02-08
   * Changed: Share counters are now updated in real time.
   * Changed: More polite share browsing with big amounts of share bases.
