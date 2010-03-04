@@ -166,7 +166,11 @@ public class LauncherJava {
         }
 
         //add binary folder
-        jvm = jvm + File.separator + "bin" + File.separator + "javaw";
+        if (OSInfo.isWindows()) {
+            jvm = jvm + File.separator + "bin" + File.separator + "javaw";
+        } else {
+            jvm = jvm + File.separator + "bin" + File.separator + "java";
+        }
         return jvm;
     }
 }
