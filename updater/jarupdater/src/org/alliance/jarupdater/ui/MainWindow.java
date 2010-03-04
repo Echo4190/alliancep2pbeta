@@ -46,7 +46,7 @@ public class MainWindow extends JFrame {
 
     private void initComponents() {
 
-        this.setTitle("Alliance Udpdater");
+        this.setTitle("Alliance Updater");
         this.setPreferredSize(new Dimension(260, 160));
         this.setResizable(false);
 
