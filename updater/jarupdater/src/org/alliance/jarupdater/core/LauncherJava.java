@@ -83,7 +83,7 @@ public class LauncherJava {
      * @param jvmargs - arguments for the java virtual machine
      * @return Process
      */
-    public static Process execJar(String pathToJar, String[] jvmargs) throws Exception {
+    public static Process execJar(String pathToJar, String[] jvmargs, String currentDir) throws Exception {
         String jvm = findJVM();
 
         String[] command = new String[jvmargs.length + 3];
@@ -104,7 +104,12 @@ public class LauncherJava {
         logger.log(Level.INFO, "Executing Command: " + wholeCommand);
 
         try {
-            Process proc = Runtime.getRuntime().exec(command);
+            Process proc = null;
+            if (currentDir.isEmpty()) {
+                proc = Runtime.getRuntime().exec(command);
+            } else {
+                proc = Runtime.getRuntime().exec(command, null, new File(currentDir));
+            }
 
             if (debug) {
                 monitorProcess(proc);

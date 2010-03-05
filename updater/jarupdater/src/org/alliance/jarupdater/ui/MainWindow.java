@@ -118,7 +118,7 @@ public class MainWindow extends JFrame {
             backup();
         } else {
             try {
-                LauncherJava.execJar("alliance.jar", new String[0]);
+                LauncherJava.execJar("alliance.jar", new String[0], "");
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Restart ... failed\nPlease start manually.", "Error", JOptionPane.ERROR_MESSAGE);
                 System.exit(0);

@@ -21,12 +21,6 @@ public class Core {
             } else {
                 userDirectory = System.getProperty("user.home") + "/.alliance/";
             }
-        } else if (OSInfo.isWindows()) {
-            if (new File("portable").exists()) {
-                userDirectory = "";
-            } else {
-                userDirectory = System.getenv("APPDATA") + "/Alliance/";
-            }
         } else {
             userDirectory = "";
         }
