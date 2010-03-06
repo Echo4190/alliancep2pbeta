@@ -12,6 +12,7 @@ import java.io.IOException;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -21,6 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
 import javax.swing.LayoutStyle;
 import javax.swing.WindowConstants;
+import javax.swing.filechooser.FileFilter;
 import org.alliance.jarupdater.core.Core;
 import org.alliance.jarupdater.core.LauncherJava;
 
@@ -118,7 +120,7 @@ public class MainWindow extends JFrame {
             backup();
         } else {
             try {
-                LauncherJava.execJar("alliance.jar", new String[0], "");
+                LauncherJava.execJar(core.getOrginalFilePath().getName(), new String[0], new String[0], "");
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Restart ... failed\nPlease start manually.", "Error", JOptionPane.ERROR_MESSAGE);
                 System.exit(0);
@@ -197,5 +199,36 @@ public class MainWindow extends JFrame {
         };
         Thread copyT = new Thread(copy);
         copyT.start();
+    }
+
+    public static File localizeFile(String filename, final String filter, final String filterText) {
+        JOptionPane.showMessageDialog(null, "Could not open \"" + filename + "\". Please click OK and select the file.", "Warning", JOptionPane.WARNING_MESSAGE);
+        JFileChooser fc = new JFileChooser();
+        fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        fc.setAcceptAllFileFilterUsed(true);
+        fc.addChoosableFileFilter(new FileFilter() {
+
+            @Override
+            public boolean accept(File pathname) {
+                if (pathname.toString().endsWith(filter) || pathname.isDirectory()) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+            @Override
+            public String getDescription() {
+                return (filterText);
+            }
+        });
+        int returnVal = fc.showOpenDialog(null);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            return new File(fc.getSelectedFile().getPath());
+        } else {
+            JOptionPane.showMessageDialog(null, "File not selected. Updater will now close.", "Info", JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
+            return null;
+        }
     }
 }

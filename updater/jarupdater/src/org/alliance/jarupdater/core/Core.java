@@ -24,8 +24,14 @@ public class Core {
         } else {
             userDirectory = "";
         }
-        updateFilePath = new File(userDirectory + "cache/alliance.update");
+        updateFilePath = new File(userDirectory + "cache/" + "alliance.update");
+        if (!updateFilePath.exists()) {
+            updateFilePath = MainWindow.localizeFile("alliance.update", "update", "Alliance Update Files");
+        }
         orginalFilePath = new File("alliance.jar");
+        if (!orginalFilePath.exists()) {
+            orginalFilePath = MainWindow.localizeFile("alliance.jar", "jar", "Jar Files");
+        }
         backupFilePath = new File(orginalFilePath.getName().replace(".jar", ".bak"));
         new MainWindow(this).setVisible(true);
     }
