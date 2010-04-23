@@ -7,3 +7,7 @@
   *  File should be save as UTF-8
 
 When you've finished translating the file you can post it on the Issue tracker. Make sure you select "Submit Patch" template so we know.
+
+::Languages done so far::
+- Swedish
+- French
