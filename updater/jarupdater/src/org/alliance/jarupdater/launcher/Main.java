@@ -2,6 +2,7 @@ package org.alliance.jarupdater.launcher;
 
 import javax.swing.UIManager;
 import org.alliance.jarupdater.core.Core;
+import org.alliance.jarupdater.core.OSInfo;
 
 /**
  *
@@ -9,11 +10,13 @@ import org.alliance.jarupdater.core.Core;
  */
 public class Main {
 
-    /**
-     * @param args the command line arguments
-     */
+    private Main() {
+    }
+
     public static void main(String[] args) throws Exception {
-        new DirectoryCheck(args);
+        if (!OSInfo.isWindows()) {
+            new DirectoryCheck(args);
+        }
         setNativeLookAndFeel();
         new Core();
     }

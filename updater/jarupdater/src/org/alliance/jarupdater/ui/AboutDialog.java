@@ -36,8 +36,8 @@ public class AboutDialog extends JDialog {
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("About");
 
-        label.setFont(new Font("Tahoma", 0, 12));
-        label.setText("Alliance updater v1.0");
+        label.setFont(new Font("Dialog", 0, 12));
+        label.setText("Alliance updater v1.1");
 
         button.setText("OK");
         button.addMouseListener(new MouseAdapter() {

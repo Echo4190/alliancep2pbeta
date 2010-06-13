@@ -1,6 +1,5 @@
 package org.alliance.jarupdater.core;
 
-import java.io.File;
 import org.alliance.jarupdater.ui.MainWindow;
 
 /**
@@ -9,42 +8,37 @@ import org.alliance.jarupdater.ui.MainWindow;
  */
 public class Core {
 
-    private File updateFilePath;
-    private File orginalFilePath;
-    private File backupFilePath;
+    private Update update;
+    private MainWindow mainWindow;
 
     public Core() {
-        String userDirectory;
-        if (OSInfo.isLinux()) {
-            if (new File("portable").exists()) {
-                userDirectory = "";
+        update = new Update(this);
+        mainWindow = new MainWindow(this);
+        mainWindow.setVisible(true);
+    }
+
+    public Update getUpdate() {
+        return update;
+    }
+
+    public MainWindow getMainWindow() {
+        return mainWindow;
+    }
+
+    public void restart() {
+        try {
+            if (OSInfo.isWindows()) {
+                String s = "cmd /c ." + System.getProperty("file.separator") + "alliance.exe";
+                Runtime.getRuntime().exec(s);
+                System.exit(0);
             } else {
-                userDirectory = System.getProperty("user.home") + "/.alliance/";
+                LauncherJava.execJar(update.getMainAllianceFile().getName(), new String[0], new String[0], "");
+                System.exit(0);
             }
-        } else {
-            userDirectory = "";
+        } catch (Exception ex) {
+            MainWindow.showDialog("Restart ... failed\nPlease start manually.", "Error", "error");
+            System.exit(0);
         }
-        updateFilePath = new File(userDirectory + "cache/" + "alliance.update");
-        if (!updateFilePath.exists()) {
-            updateFilePath = MainWindow.localizeFile("alliance.update", "update", "Alliance Update Files");
-        }
-        orginalFilePath = new File("alliance.jar");
-        if (!orginalFilePath.exists()) {
-            orginalFilePath = MainWindow.localizeFile("alliance.jar", "jar", "Jar Files");
-        }
-        backupFilePath = new File(orginalFilePath.getName().replace(".jar", ".bak"));
-        new MainWindow(this).setVisible(true);
-    }
-
-    public File getBackupFilePath() {
-        return backupFilePath;
-    }
-
-    public File getOrginalFilePath() {
-        return orginalFilePath;
-    }
-
-    public File getUpdateFilePath() {
-        return updateFilePath;
+        System.exit(0);
     }
 }
