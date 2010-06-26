@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 
@@ -264,11 +265,15 @@ public class Update {
         } else {
             path = path.substring(unzipDirPath.length());
             core.getMainWindow().appendText(path + " -> " + new File(dst + path).getAbsolutePath());
-            copyFile(new File(src + path), new File(dst + path));
+            try {
+                copyFile(new File(src + path), new File(dst + path));
+            } catch (FileNotFoundException ex) {
+                core.getMainWindow().appendText(path + " -> New File!!! Backup skipped...");
+            }
         }
     }
 
-    private void copyFile(final File src, final File dst) throws Exception {
+    private void copyFile(final File src, final File dst) throws FileNotFoundException, Exception {
         FileInputStream in = null;
         in = new FileInputStream(src);
         FileOutputStream out = new FileOutputStream(dst);
@@ -298,8 +303,8 @@ public class Update {
                     deleteFiles(file);
                 }
             }
-            dir.delete();
-        } else {
+        }
+        if (!dir.getName().endsWith(".zip")) {
             dir.delete();
         }
     }
