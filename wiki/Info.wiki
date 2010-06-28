@@ -1,4 +1,4 @@
-#summary Developing Builds Changelog
+#summary Preview Release Changelog
 = AllianceP2P - Beta Wiki =
 
 == Latest Changes ==
