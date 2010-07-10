@@ -1,4 +1,5 @@
-#summary Translation Guide
+#summary Developers Corner - Translation Guide.
+#labels Phase-Implementation
 = Steps necessary for translating  =
 
   *  Make copy of alliance_en.properties [http://alliancep2pbeta.googlecode.com/svn/trunk/working/language/alliance_en.properties download]
