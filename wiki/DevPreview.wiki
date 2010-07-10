@@ -1,7 +1,8 @@
+#summary Developers Corner - Preview Build.
 #labels Phase-Deploy
 *v1.2.0pre build (1272)*
 
-This build is mainly to help people translate Alliance, however it should still be stable enough to use on a daily basis.
+*This build is mainly to help people translate Alliance*, however it should still be stable enough to use on a daily basis.
 
 This build has only been tested on Windows but should still function under Linux and Mac...maybe.
 
