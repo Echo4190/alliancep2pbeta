@@ -1,4 +1,4 @@
-#summary Learn how to make and use .Alliance files.
+#summary User Guide - Learn how to make and use .Alliance files.
 
 = Introduction =
 
