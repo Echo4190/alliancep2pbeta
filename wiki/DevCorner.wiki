@@ -7,3 +7,4 @@ Index:
 
   * [DevBasic Basic info about source hierarchy]
   * [DevNetBeans Creating Alliance project with !NetBeans]
+  * [Translation Translation Guide]
