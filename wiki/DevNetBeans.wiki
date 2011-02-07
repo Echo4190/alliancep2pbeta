@@ -1,6 +1,6 @@
 #summary Developers Corner - NetBeans.
 
-= Sections =
+= Table Of Contents =
   * [DevNetBeans#Creating_Alliance_project_with_NetBeans Approach #1]
   * [DevNetBeans#Another_NetBeans_Setup_Approach Approach#2]
   * [DevNetBeans#Using_Test_Suite_with_NetBeans Running the Test Suite]
