@@ -1,5 +1,11 @@
 #summary Developers Corner - NetBeans.
 
+Sections
+  * [DevNetBeans#Creating_Alliance_project_with_NetBeans]
+  * [DevNetBeans#Another_NetBeans_Setup_Approach]
+  * [DevNetBeans#Using_Test_Suite_with_NetBeans]
+
+
 = Creating Alliance project with !NetBeans =
 
 *1) Creating a blank project for trunk build*
