@@ -154,3 +154,7 @@ In package org.alliance.misc there is a !GenerateTestSuit class. It accepts 1 ar
 You launch test suite by running Main in org.alliance.launchers.testsuite package
 
 http://thayanger.neostrada.pl/dev/net16.jpg
+
+This will run a handful of core subsystems; you can select any of them and hit "Start" to open the UI.
+
+http://alliancep2p.com/dev/alliance_testsuite_big.png
