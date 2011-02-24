@@ -284,11 +284,21 @@ public class GenerateTestSuite {
     }
 
     /**
-     * Create a random file under some random number of directories (all with fileNum in the name)
+     * Create a random file under some random number of directories (all with fileNum in the name).
+     *
+     * Note that it will create at least one directory, because the share paths
+     * in these settings are assumed to be directories within the main testsuite
+     * share directory.
+     *
      * @param dir directory under which to create the file
      * @param fileNum any number, used to create the file and directory name(s)
      */
     private static void createRandomFileTree(File dir, int fileNum) throws java.io.IOException {
+        // make a directory
+        File subDir = new File(dir.getPath() + File.separator + fileNum + File.separator);
+        subDir.mkdir();
+        
+        // now either make a file here or recurse
         int depth = dir.getPath().split(File.separator).length;
         if (Math.random() * 15 < depth) {
             File thisFile = new File(dir.getPath() + File.separator +  fileNum + ".txt");
@@ -299,8 +309,6 @@ public class GenerateTestSuite {
             }
             writer.close();
         } else {
-            File subDir = new File(dir.getPath() + File.separator + fileNum + File.separator);
-            subDir.mkdir();
             createRandomFileTree(subDir, fileNum);
         }
     }
