@@ -94,11 +94,10 @@
         </jar>
     </target>
     <target name="plugin-test-jar">
-        <echo file="build/testsuite/Alliance.config"
-            message="org.alliance.misc.TestPlugIn" />
+        <mkdir dir="build/testsuite" />
+        <echo file="build/testsuite/Alliance.config" message="org.alliance.misc.TestPlugIn" />
         <echo file="build/testsuite/Alliance.config" append="true" /><!-- newline -->
         <jar jarfile="build/testsuite/alliance-test-plugin.jar">
-            <fileset dir="build/classes" includes="**/TestPlugIn.class" />
             <fileset dir="build/testsuite" includes="Alliance.config" />
 	</jar>
     </target>
