@@ -32,11 +32,6 @@ public class UIBridge implements UICallback {
     }
 
     @Override
-    public boolean hasUIBridge() {
-        return true;
-    }
-
-    @Override
     public void nodeOrSubnodesUpdated(final Node node) {
         SwingUtilities.invokeLater(new Runnable() {
 

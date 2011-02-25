@@ -49,11 +49,6 @@ public class Java6TrayIconSubsystem implements Subsystem, Runnable {
         core.addUICallback(new UICallback() {
 
             @Override
-            public boolean hasUIBridge() {
-                return false;
-            }
-
-            @Override
             public void firstDownloadEverFinished() {
             }
 
