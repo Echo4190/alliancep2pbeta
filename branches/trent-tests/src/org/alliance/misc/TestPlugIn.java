@@ -46,6 +46,7 @@ public class TestPlugIn implements PlugIn {
     private static boolean everInitialized = false;
 
     private CoreSubsystem core;
+    private String nickname;
     private TestUICallback testCallback;
 
 
@@ -64,9 +65,10 @@ public class TestPlugIn implements PlugIn {
         everInitialized = true;
         
         this.core = core;
+        this.nickname = core.getSettings().getMy().getNickname();
 
         if (testCallback == null ) {
-            testCallback = new TestUICallback(core.getSettings().getMy().getNickname());
+            testCallback = new TestUICallback();
             core.addUICallback(testCallback);
         }
         // init, and check to make sure this isn't a repeated init
@@ -81,7 +83,7 @@ public class TestPlugIn implements PlugIn {
 
         if (testCallback.active) {
             testCallback.active = false;
-            hashCodeOfLastActiveCallbackInvokedForMain.remove(testCallback.nickname);
+            hashCodeOfLastActiveCallbackInvokedForMain.remove(nickname);
         } else {
             // don't worry if multiple shutdowns are called (at least for now)
         }
@@ -99,9 +101,14 @@ public class TestPlugIn implements PlugIn {
         return new ConsolePlugInExtension() {
             public boolean handleLine(String line, Printer print) {
                 if (line.equals("TestPlugIn")) {
+                    hashCodeOfLastActiveCallbackInvokedForMain.remove(nickname);
                     // run any callback method to force it through the chain
                     core.getUICallback().isUIVisible();
                     print.println("Finished calling UICallback method.");
+                    // now check that the callback for this got called
+                    if (hashCodeOfLastActiveCallbackInvokedForMain.get(nickname) == null) {
+                        throw new IllegalStateException("The TestUICallback method wasn't called.");
+                    }
                     return true;
                 } else {
                     return false;
@@ -118,12 +125,8 @@ public class TestPlugIn implements PlugIn {
     public static Map<String,Integer> hashCodeOfLastActiveCallbackInvokedForMain = new HashMap<String,Integer>();
 
     public class TestUICallback extends NonWindowUICallback {
-        public final String nickname;
         public boolean active = false;
         
-        public TestUICallback(String nickname) {
-            this.nickname = nickname;
-        }
         public void testDuplicateCallbacksInChain() {
             //System.out.println("-------------------- TestUICallback for " + nickname + " was called!  Active: " + active + "  hash: " + this.hashCode() + "  Method: " + Thread.currentThread().getStackTrace()[2]);
             if (active) {
