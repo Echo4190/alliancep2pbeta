@@ -103,7 +103,7 @@ public class TestPlugIn implements PlugIn {
                 if (line.equals("TestPlugIn")) {
                     hashCodeOfLastActiveCallbackInvokedForMain.remove(nickname);
                     // run any callback method to force it through the chain
-                    core.getUICallback().isUIVisible();
+                    core.getUICallback().firstDownloadEverFinished();
                     print.println("Finished calling UICallback method.");
                     // now check that the callback for this got called
                     if (hashCodeOfLastActiveCallbackInvokedForMain.get(nickname) == null) {

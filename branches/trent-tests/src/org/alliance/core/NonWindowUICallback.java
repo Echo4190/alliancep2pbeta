@@ -17,6 +17,11 @@ import java.util.TreeMap;
 public class NonWindowUICallback implements UICallback {
 
     @Override
+    public boolean hasUIBridge() {
+        return false;
+    }
+
+    @Override
     public void nodeOrSubnodesUpdated(Node node) {
     }
 

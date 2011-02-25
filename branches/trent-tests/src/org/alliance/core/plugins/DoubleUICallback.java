@@ -27,6 +27,11 @@ public class DoubleUICallback implements UICallback {
     }
 
     @Override
+    public boolean hasUIBridge() {
+        return first.hasUIBridge() || second.hasUIBridge();
+    }
+
+    @Override
     public void nodeOrSubnodesUpdated(Node node) {
         first.nodeOrSubnodesUpdated(node);
         second.nodeOrSubnodesUpdated(node);
