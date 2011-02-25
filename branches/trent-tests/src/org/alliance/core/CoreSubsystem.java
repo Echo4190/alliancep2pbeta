@@ -556,6 +556,11 @@ public class CoreSubsystem implements Subsystem {
         return uiCallback;
     }
 
+    /**
+     * Note that this removes all current callbacks.
+     *
+     * @param uiCallback
+     */
     public void setUICallback(UICallback uiCallback) {
         UICallback old = this.uiCallback;
         if (uiCallback == null) {

@@ -18,11 +18,6 @@ import java.util.TreeMap;
 public interface UICallback {
 
     /**
-     * Called to check if a UIBridge already exists in this callback chain.
-     */
-    boolean hasUIBridge();
-
-    /**
      * Called when a new friend has been added.
      * @param friend The new friend that was just added
      */

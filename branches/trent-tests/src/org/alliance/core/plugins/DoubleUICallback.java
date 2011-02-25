@@ -26,9 +26,12 @@ public class DoubleUICallback implements UICallback {
         this.second = second;
     }
 
-    @Override
-    public boolean hasUIBridge() {
-        return first.hasUIBridge() || second.hasUIBridge();
+    public UICallback getFirst() {
+        return first;
+    }
+
+    public UICallback getSecond() {
+        return second;
     }
 
     @Override
