@@ -57,7 +57,12 @@ public class JDesktopTrayIconSubsystem implements Subsystem, Runnable {
         core = (CoreSubsystem) params[0];
         extractNativeLibs();
         initTray();
-        core.setUICallback(new UICallback() {
+        core.addUICallback(new UICallback() {
+
+            @Override
+            public boolean hasUIBridge() {
+                return false;
+            }
 
             @Override
             public void firstDownloadEverFinished() {

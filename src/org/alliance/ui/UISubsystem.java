@@ -130,7 +130,10 @@ public class UISubsystem implements UINexus, Subsystem {
             handleErrorInEventLoop(e);
         }
 
-        core.setUICallback(new UIBridge(this, core.getUICallback()));
+        if (core.getUICallback() == null
+            || !core.getUICallback().hasUIBridge()) {
+            core.addUICallback(new UIBridge(this, core.getUICallback()));
+        }
     }
 
     private void setGlobalFont(String fontName, int size) {
@@ -180,7 +183,6 @@ public class UISubsystem implements UINexus, Subsystem {
     @Override
     public void shutdown() {
         mainWindow.shutdown();
-        core.setUICallback(null);
         Thread.setDefaultUncaughtExceptionHandler(null);
     }
 
