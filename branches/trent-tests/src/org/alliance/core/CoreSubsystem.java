@@ -503,6 +503,13 @@ public class CoreSubsystem implements Subsystem {
             }
         }
         try {
+            resetUICallback();
+        } catch (Exception e) {
+            if (T.t) {
+                T.error("Problem when clearing UI callbacks: " + e);
+            }
+        }
+        try {
             saveSettings();
         } catch (Exception e) {
             if (T.t) {
@@ -557,17 +564,17 @@ public class CoreSubsystem implements Subsystem {
     }
 
     /**
-     * Note that this removes all current callbacks.
+     * Unload all current callbacks.
+     *
+     * Note that there's some overlap here with the PlugInManager:
+     * it runs init and shutdown for PlugIns, and this method effectively
+     * does the same for all callbacks, some of which may be from PlugIns.
      *
      * @param uiCallback
      */
-    public void setUICallback(UICallback uiCallback) {
+    public void resetUICallback() {
         UICallback old = this.uiCallback;
-        if (uiCallback == null) {
-            this.uiCallback = new NonWindowUICallback();
-        } else {
-            this.uiCallback = uiCallback;
-        }
+        this.uiCallback = new NonWindowUICallback();
         if (old != null) {
             old.callbackRemoved();
         }
