@@ -1,0 +1,231 @@
+= Create a Basic PlugIn =
+
+First, I assume all your friends have v 1.0.6.  (I will also include instructions for trunk from code.google.com.)
+
+  # Create a new directory to hold the files.
+  # Create a Java file that implements the PlugIn interface.  In v 1.0.6 and later, that means 2 methods: init and shutdown.  To do something useful, you'll want to add a UICallback that does something; see Exhibit A1 for an example.  (If you're working on trunk things are slightly different, such as the additional PlugIn.getConsoleExtensions method; see Exhibit A2 for an example.)
+  # Compiling it is easy with the program jar available; here's my command:
+{{{
+javac -classpath ../dl/Alliance-v1.0.6.jar HelloWorldPlugIn.java
+}}}
+  # Create a file named "Alliance.config" that contains the name of your Java class.  That's all; just the class name.  (A future release may fix this; see r 218 on code.google.com repo.)
+  # Create the jar. Here's my command:
+{{{
+jar -cf alliance-hello.jar *
+}}}
+  # Now go to Alliance and add this jar to your plugin list (under "View" and "Plugins").
+
+
+
+
+
+== Exhibit A1: HelloWorldPlugin for v 1.0.6 ==
+v 1.0.6 thru v 1.0.8a Beta, up to r 19 at code.google.com
+{{{
+import org.alliance.core.CoreSubsystem;
+import org.alliance.core.NeedsUserInteraction;
+import org.alliance.core.UICallback;
+import org.alliance.core.comm.SearchHit;
+import org.alliance.core.comm.rpc.ChatMessageV3;
+import org.alliance.core.interactions.PostMessageInteraction;
+import org.alliance.core.interactions.PostMessageToAllInteraction;
+import org.alliance.core.node.Friend;
+import org.alliance.core.node.Node;
+import org.alliance.core.plugins.PlugIn;
+
+import java.io.IOException;
+import java.util.List;
+
+/**
+ * Date: 2008-jun-06
+ * Time: 11:59:37
+ */
+public class HelloWorldPlugin implements PlugIn, UICallback {
+    private CoreSubsystem core;
+
+    // **************************** Methods implementing the PlugIn interface ***************************************
+
+    /** Called when Alliance is starting. This is the entry point to your plugin. */
+    public void init(CoreSubsystem core) throws Exception {
+        System.out.println("HelloWorldPlugin launching, yay!");
+        this.core = core;
+
+        //hooks all sorts of callbacks that Alliance will generate - look in the UICallback interface
+        core.addUICallback(this);
+    }
+
+    /** Called when Alliance is shutting down. */
+    public void shutdown() throws IOException {
+        System.out.println("HelloWorldPlugin shutting down =(");
+    }
+
+    // ************************** Methods implementing the UICallback interface *************************************
+
+    /**
+     * When the UI is started our callback might get removed from the CoreSubsyste. In that case we need to
+     * re-register our callback.
+     */
+    public void callbackRemoved() {
+        core.addUICallback(this);
+    }
+
+    /**
+     * Every time a new user interaction is queued this method is called. User interactions are things that the used
+     * needs to be informed of. One interesting user interaction is the PostMessageInteraction. It is invoked when
+     * a chat message is received. That's what this example method looks for.
+     * @param ui The user interaction that was just queued
+     */
+    public void newUserInteractionQueued(NeedsUserInteraction ui) {
+        try {
+            if (ui instanceof PostMessageInteraction) {
+                //this is a PostMessageInteraction - someone sent a chat message
+
+                if (ui instanceof PostMessageToAllInteraction) {
+                    //this was a chat message sent in the public chat to everyone - ignore it
+                    return;
+                }
+
+                //it's a private message to our bot - let's reply to it!
+                PostMessageInteraction p = (PostMessageInteraction)ui;
+
+                //get the friend that sent the message
+                Friend friend = core.getFriendManager().getFriend(p.getFromGuid());
+
+                //create the chat message string
+                String message = "Hello "+
+                        friend.nickname()+"! Did you know that your highest recorded download speed is "+
+                        friend.getHighestIncomingCPS()+" bytes per second?!";
+
+                //create a chat message RPC that is private to only one user
+                ChatMessageV3 chatMessage = new ChatMessageV3(message, false);
+
+                //send the chat message to the friend
+                core.getNetworkManager().sendPersistantly(chatMessage, friend);
+            }
+        } catch (IOException e) {
+            core.reportError(e, this);
+        }
+    }
+
+    // *********** Othher methods from the UICallback are below - their implementation can be left empty ************
+
+    public void signalFriendAdded(Friend friend) {}
+    public boolean isUIVisible() { return false; }
+    public void nodeOrSubnodesUpdated(Node node) {}
+    public void noRouteToHost(Node node) {}
+    public void searchHits(int srcGuid, int hops, List<SearchHit> hits) {}
+    public void trace(int level, String message, Exception stackTrace) {}
+    public void handleError(Throwable e, Object Source) {}
+    public void statusMessage(String s) {}
+    public void toFront() {}
+    public void logNetworkEvent(String event) {}
+    public void receivedShareBaseList(Friend friend, String[] shareBaseNames) {}
+    public void receivedDirectoryListing(Friend friend, int shareBaseIndex, String path, String[] files) {}
+    public void firstDownloadEverFinished() {}
+
+	public void pluginCommunicationReceived(Friend source, String data) {}
+}
+
+}}}
+
+
+
+
+
+== Exhibit A2: HelloWorldPlugin for trunk ==
+v 1.1.0 and later, r 20 and later at code.google.com
+{{{
+package org.alliance.helloworldplugin;
+
+import org.alliance.core.CoreSubsystem;
+import org.alliance.core.NeedsUserInteraction;
+import org.alliance.core.NonWindowUICallback;
+import org.alliance.core.UICallback;
+import org.alliance.core.plugins.ConsolePlugInExtension;
+import org.alliance.core.comm.SearchHit;
+import org.alliance.core.comm.rpc.ChatMessage;
+import org.alliance.core.interactions.PostMessageInteraction;
+import org.alliance.core.interactions.PostMessageToAllInteraction;
+import org.alliance.core.node.Friend;
+import org.alliance.core.node.Node;
+import org.alliance.core.plugins.PlugIn;
+
+import java.io.IOException;
+import java.util.List;
+
+/**
+ * Date: 2008-jun-06
+ * Time: 11:59:37
+ */
+public class HelloWorldPlugin extends NonWindowUICallback implements PlugIn, UICallback {
+    private CoreSubsystem core;
+
+    // **************************** Methods implementing the PlugIn interface ***************************************
+
+    /** Called when Alliance is starting. This is the entry point to your plugin. */
+    public void init(CoreSubsystem core) throws Exception {
+        System.out.println("HelloWorldPlugin launching, yay!");
+        this.core = core;
+
+        //hooks all sorts of callbacks that Alliance will generate - look in the UICallback interface
+        core.addUICallback(this);
+    }
+
+    /** Called when Alliance is shutting down. */
+    public void shutdown() throws IOException {
+        System.out.println("HelloWorldPlugin shutting down =(");
+    }
+
+    // ************************** Methods implementing the UICallback interface *************************************
+
+    /**
+     * When the UI is started our callback might get removed from the CoreSubsyste. In that case we need to
+     * re-register our callback.
+     */
+    public void callbackRemoved() {
+        core.addUICallback(this);
+    }
+
+    /**
+     * Every time a new user interaction is queued this method is called. User interactions are things that the used
+     * needs to be informed of. One interesting user interaction is the PostMessageInteraction. It is invoked when
+     * a chat message is received. That's what this example method looks for.
+     * @param ui The user interaction that was just queued
+     */
+    public void newUserInteractionQueued(NeedsUserInteraction ui) {
+        try {
+            if (ui instanceof PostMessageInteraction) {
+                //this is a PostMessageInteraction - someone sent a chat message
+
+                if (ui instanceof PostMessageToAllInteraction) {
+                    //this was a chat message sent in the public chat to everyone - ignore it
+                    return;
+                }
+
+                //it's a private message to our bot - let's reply to it!
+                PostMessageInteraction p = (PostMessageInteraction)ui;
+
+                //get the friend that sent the message
+                Friend friend = core.getFriendManager().getFriend(p.getFromGuid());
+
+                //create the chat message string
+                String message = "Hello "+
+                        friend.getNickname()+"! Did you know that your highest recorded download speed is "+
+                        friend.getHighestIncomingCPS()+" bytes per second?!";
+
+                //create a chat message RPC that is private to only one user
+                ChatMessage chatMessage = new ChatMessage(message, false);
+
+                //send the chat message to the friend
+                core.getNetworkManager().sendPersistantly(chatMessage, friend);
+            }
+        } catch (IOException e) {
+            core.reportError(e, this);
+        }
+    }
+
+    public ConsolePlugInExtension getConsoleExtensions() { return null; }
+
+}
+
+}}}
