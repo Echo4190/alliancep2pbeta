@@ -16,6 +16,7 @@ jar -cf alliance-hello.jar *
   # Now go to Alliance and add this jar to your plugin list (under "View" and "Plugins").
 
 
+For trunk only, you can add commands to the 
 
 
 
@@ -24,6 +25,7 @@ v 1.0.6 thru v 1.0.8a Beta, up to r 19 at code.google.com
 {{{
 import org.alliance.core.CoreSubsystem;
 import org.alliance.core.NeedsUserInteraction;
+import org.alliance.core.NonWindowUICallback;
 import org.alliance.core.UICallback;
 import org.alliance.core.comm.SearchHit;
 import org.alliance.core.comm.rpc.ChatMessageV3;
@@ -40,7 +42,7 @@ import java.util.List;
  * Date: 2008-jun-06
  * Time: 11:59:37
  */
-public class HelloWorldPlugin implements PlugIn, UICallback {
+public class HelloWorldPlugin extends NonWindowUICallback implements PlugIn, UICallback {
     private CoreSubsystem core;
 
     // **************************** Methods implementing the PlugIn interface ***************************************
@@ -107,23 +109,6 @@ public class HelloWorldPlugin implements PlugIn, UICallback {
         }
     }
 
-    // *********** Othher methods from the UICallback are below - their implementation can be left empty ************
-
-    public void signalFriendAdded(Friend friend) {}
-    public boolean isUIVisible() { return false; }
-    public void nodeOrSubnodesUpdated(Node node) {}
-    public void noRouteToHost(Node node) {}
-    public void searchHits(int srcGuid, int hops, List<SearchHit> hits) {}
-    public void trace(int level, String message, Exception stackTrace) {}
-    public void handleError(Throwable e, Object Source) {}
-    public void statusMessage(String s) {}
-    public void toFront() {}
-    public void logNetworkEvent(String event) {}
-    public void receivedShareBaseList(Friend friend, String[] shareBaseNames) {}
-    public void receivedDirectoryListing(Friend friend, int shareBaseIndex, String path, String[] files) {}
-    public void firstDownloadEverFinished() {}
-
-	public void pluginCommunicationReceived(Friend source, String data) {}
 }
 
 }}}
