@@ -9,3 +9,4 @@ Index:
   * [DevNetBeans Creating Alliance project with NetBeans]
   * [DevTranslation Translation Guide]
   * [DevPreview Preview Build]
+  * [DevPlugin PlugIn Instructions]
