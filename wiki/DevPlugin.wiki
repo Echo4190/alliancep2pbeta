@@ -3,7 +3,7 @@
 First, I assume all your friends have v 1.0.6.  (I will also include instructions for trunk from code.google.com.)
 
   # Create a new directory to hold the files.
-  # Create a Java file that implements the PlugIn interface.  In v 1.0.6 and later, that means 2 methods: init and shutdown.  To do something useful, you'll want to add a UICallback that does something; see Exhibit A1 for an example.  (If you're working on trunk things are slightly different, such as the additional PlugIn.getConsoleExtensions method; see Exhibit A2 for an example.)
+  # Create a Java file that implements the !PlugIn interface.  In v 1.0.6 and later, that means 2 methods: init and shutdown.  To do something useful, you'll want to add a UICallback that does something; see Exhibit A1 for an example.  (If you're working on trunk things are slightly different, such as the additional !PlugIn.getConsoleExtensions method; see Exhibit A2 for an example.)
   # Compiling it is easy with the program jar available; here's my command:
 {{{
 javac -classpath ../dl/Alliance-v1.0.6.jar HelloWorldPlugIn.java
@@ -19,7 +19,7 @@ jar -cf alliance-hello.jar *
 
 
 
-== Exhibit A1: HelloWorldPlugin for v 1.0.6 ==
+== Exhibit A1: !HelloWorldPlugin for v 1.0.6 ==
 v 1.0.6 thru v 1.0.8a Beta, up to r 19 at code.google.com
 {{{
 import org.alliance.core.CoreSubsystem;
@@ -132,7 +132,7 @@ public class HelloWorldPlugin implements PlugIn, UICallback {
 
 
 
-== Exhibit A2: HelloWorldPlugin for trunk ==
+== Exhibit A2: !HelloWorldPlugin for trunk ==
 v 1.1.0 and later, r 20 and later at code.google.com
 {{{
 package org.alliance.helloworldplugin;
