@@ -1,4 +1,4 @@
-= Create a Basic PlugIn =
+= Create a Basic Plugin =
 
 First, I assume all your friends have v 1.0.6.  (I will also include instructions for trunk from code.google.com.)
 
