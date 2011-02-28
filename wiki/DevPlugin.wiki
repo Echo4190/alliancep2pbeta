@@ -2,7 +2,7 @@
 
 = Create a Basic Plugin =
 
-First, I assume all your friends have v 1.0.6.  (I will also include instructions for trunk from code.google.com.)
+First, all your friends should have at least version 1.0.6.  (Instructions for trunk from code.google.com are also included.)
 
   # Create a new directory to hold the files.
   # Create a Java file that implements the !PlugIn interface.  In v 1.0.6 and later, that means 2 methods: init and shutdown.  To do something useful, you'll want to add a UICallback that does something; see Exhibit A1 for an example.  (If you're working on trunk things are slightly different, such as the additional !PlugIn.getConsoleExtensions method; see Exhibit A2 for an example.)
@@ -10,18 +10,18 @@ First, I assume all your friends have v 1.0.6.  (I will also include instruction
 {{{
 javac -classpath ../dl/Alliance-v1.0.6.jar HelloWorldPlugIn.java
 }}}
-  # Create a file named "Alliance.config" that contains the name of your Java class.  That's all; just the class name.  (A future release may fix this; see r 218 on code.google.com repo.)
+  # For trunk, create a file named "Alliance.config" that contains the name of your Java class.
   # Create the jar. Here's my command:
 {{{
 jar -cf alliance-hello.jar *
 }}}
-  # In v 1.0.6, add the following lines in place of the `<pluginlist/>` line (with your own jar location, of course):
+  # Now, everyone who wants to use the plugin should add this plugin to their installation.  In v 1.0.6, add the following lines in place of the `<pluginlist/>` line (with your own jar location, of course):
 {{{
   <pluginlist>
     <plugin jar="/Users/tlarson/Documents/dev/alliance/working-plugin-1.0.6/HelloWorldPlugin.jar" pluginclass="HelloWorldPlugin"/>
   </pluginlist>
 }}}
-  On trunk, you can add this jar to your plugin list in the Alliance app (under "View" and "Plugins").
+  In trunk code, add the jar directly in the Alliance app under "View" and "Plugins".
 
 
 
@@ -45,6 +45,12 @@ import java.io.IOException;
 import java.util.List;
 
 /**
+ * 
+ * To make this fire, add it to one (and only one) of your installations,
+ * then run that and another instance with the '/AllowMultipleInstances' flag,
+ * then have the second instance send a private chat to the first.
+ * You'll see an additional message for every chat you send.
+ * 
  * Date: 2008-jun-06
  * Time: 11:59:37
  */
