@@ -25,6 +25,10 @@ jar -cf alliance-hello.jar *
 
 
 
+In trunk, there's a way to add to the console commands; Exhibit B shows an example of a ConsolePlugInExtension.
+
+
+
 
 == Exhibit A1: !HelloWorldPlugin for v 1.0.6 ==
 v 1.0.6 thru v 1.0.8a Beta, up to r 19 at code.google.com
@@ -151,6 +155,12 @@ import java.io.IOException;
 import java.util.List;
 
 /**
+ * 
+ * To make this fire, add it to one (and only one) of your installations,
+ * then run that and another instance with the '/AllowMultipleInstances' flag,
+ * then have the second instance send a private chat to the first.
+ * You'll see an additional message for every chat you send.
+ * 
  * Date: 2008-jun-06
  * Time: 11:59:37
  */
@@ -171,6 +181,7 @@ public class HelloWorldPlugin extends NonWindowUICallback implements PlugIn, UIC
     /** Called when Alliance is shutting down. */
     public void shutdown() throws IOException {
         System.out.println("HelloWorldPlugin shutting down =(");
+        // Note that we should disable the UICallback here (eg. for when plugins change and PlugIns are initialized again).
     }
 
     // ************************** Methods implementing the UICallback interface *************************************
@@ -225,4 +236,47 @@ public class HelloWorldPlugin extends NonWindowUICallback implements PlugIn, UIC
 
 }
 
+}}}
+
+
+
+
+
+
+
+== Exhibit B: !HelloWorldPlugin for trunk ==
+{{{
+import org.alliance.core.CoreSubsystem;
+import org.alliance.core.plugins.ConsolePlugInExtension;
+import org.alliance.core.plugins.PlugIn;
+import org.alliance.launchers.console.Console.Printer;
+
+/**
+ * To use this, type 'hello' in the console (under 'View' -> 'Debug' -> 'Debug Console'.
+ * 
+ */
+public class HelloPlugIn implements PlugIn {
+
+    public void init(CoreSubsystem core) throws Exception {
+    }
+
+    public void shutdown() throws Exception {
+    }
+
+    public ConsolePlugInExtension getConsoleExtensions() {
+        return new ConsolePlugInExtension() {
+            /**
+             * @return true so they don't get an 'unknown command' message
+             */
+            public boolean handleLine(String line, Printer print) {
+                if (line.startsWith("hello")) {
+                    print.println("Hello, world!  You said: " + line);
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        };
+    }
+}
 }}}
