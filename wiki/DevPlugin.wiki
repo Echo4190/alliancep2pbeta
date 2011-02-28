@@ -15,7 +15,7 @@ javac -classpath ../dl/Alliance-v1.0.6.jar HelloWorldPlugIn.java
 {{{
 jar -cf alliance-hello.jar *
 }}}
-  # In v 1.0.6, add the following lines in place of the "&lt;pluginlist/&gt;" line, replacing the jar location with your own:
+  # In v 1.0.6, add the following lines in place of the "<pluginlist/>" line, replacing the jar location with your own:
 {{{
   <pluginlist>
     <plugin jar="/Users/tlarson/Documents/dev/alliance/working-plugin-1.0.6/HelloWorldPlugin.jar" pluginclass="HelloWorldPlugin"/>
