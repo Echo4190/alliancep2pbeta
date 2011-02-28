@@ -1,3 +1,5 @@
+#summary Create a PlugIn
+
 = Create a Basic Plugin =
 
 First, I assume all your friends have v 1.0.6.  (I will also include instructions for trunk from code.google.com.)
@@ -13,10 +15,14 @@ javac -classpath ../dl/Alliance-v1.0.6.jar HelloWorldPlugIn.java
 {{{
 jar -cf alliance-hello.jar *
 }}}
-  # Now go to Alliance and add this jar to your plugin list (under "View" and "Plugins").
+  # In v 1.0.6, add the following lines in place of the "&lt;pluginlist/&gt;" line, replacing the jar location with your own:
+{{{
+  <pluginlist>
+    <plugin jar="/Users/tlarson/Documents/dev/alliance/working-plugin-1.0.6/HelloWorldPlugin.jar" pluginclass="HelloWorldPlugin"/>
+  </pluginlist>
+}}}
+  On trunk, you can add this jar to your plugin list in the Alliance app (under "View" and "Plugins").
 
-
-For trunk only, you can add commands to the 
 
 
 
