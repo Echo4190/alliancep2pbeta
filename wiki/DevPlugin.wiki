@@ -25,7 +25,7 @@ jar -cf alliance-hello.jar *
 
 
 
-In trunk, there's a way to add to the console commands; Exhibit B shows an example of a ConsolePlugInExtension.
+In trunk, there's a way to add to the console commands; Exhibit B shows an example of a !ConsolePlugInExtension.
 
 
 
