@@ -31,7 +31,7 @@ In trunk, there's a way to add to the console commands; Exhibit B shows an examp
 
 
 == Exhibit A1: !HelloWorldPlugin for v 1.0.6 ==
-v 1.0.6 thru v 1.0.8a Beta, up to r 19 at code.google.com
+v 1.0.6 thru v 1.1.1, up to r 234 at code.google.com
 {{{
 import org.alliance.core.CoreSubsystem;
 import org.alliance.core.NeedsUserInteraction;
@@ -80,8 +80,8 @@ public class HelloWorldPlugin extends NonWindowUICallback implements PlugIn, UIC
     // ************************** Methods implementing the UICallback interface *************************************
 
     /**
-     * When the UI is started our callback might get removed from the CoreSubsyste. In that case we need to
-     * re-register our callback.
+     * When the UI is started our callback might get removed from the CoreSubsystem. In that case we need to
+     * re-register our callback.  (See issue 148.  Fixed on trunk.)
      */
     public void callbackRemoved() {
         core.addUICallback(this);
@@ -134,7 +134,7 @@ public class HelloWorldPlugin extends NonWindowUICallback implements PlugIn, UIC
 
 
 == Exhibit A2: !HelloWorldPlugin for trunk ==
-v 1.1.0 and later, r 20 and later at code.google.com
+v 1.2.0 and later, r 235 and later at code.google.com
 {{{
 package org.alliance.helloworldplugin;
 
@@ -185,14 +185,6 @@ public class HelloWorldPlugin extends NonWindowUICallback implements PlugIn, UIC
     }
 
     // ************************** Methods implementing the UICallback interface *************************************
-
-    /**
-     * When the UI is started our callback might get removed from the CoreSubsyste. In that case we need to
-     * re-register our callback.
-     */
-    public void callbackRemoved() {
-        core.addUICallback(this);
-    }
 
     /**
      * Every time a new user interaction is queued this method is called. User interactions are things that the used
