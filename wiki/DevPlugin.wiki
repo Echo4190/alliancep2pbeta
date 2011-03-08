@@ -10,7 +10,7 @@ First, all your friends should have at least version 1.0.6.  (Instructions for t
 {{{
 javac -classpath ../dl/Alliance-v1.0.6.jar HelloWorldPlugIn.java
 }}}
-  # For trunk, create a file named "Alliance.config" that contains the name of your Java class.  (This isn't totally necessary because Alliance will take the first class that implements PlugIn, but it will speed your load time... one millisecond vs. one millisecond per class in your jar.)
+  # For trunk, create a file named "Alliance.config" that contains the name of your Java class.  (This isn't totally necessary because Alliance will take the first class that implements !PlugIn, but it will speed your load time... one millisecond vs. one millisecond per class in your jar.)
   # Create the jar. Here's my command:
 {{{
 jar -cf alliance-hello.jar *
