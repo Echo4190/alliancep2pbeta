@@ -65,7 +65,7 @@ public class AddFriendWizard extends JWizard {
     private Thread connectionThread;
     private ForwardInvitationNodesList forwardInvitationNodesList;
     private Integer invitationFromGuid;
-    private static final String PORT_OPEN_TEST_URL = "http://maciek.tv/porttest?port=";
+    //private static final String PORT_OPEN_TEST_URL = "http://maciek.tv/porttest?port=";
 
     public AddFriendWizard() throws Exception {
         setSuperTitle(Language.getLocalizedString(getClass(), "windowheader"));
@@ -210,7 +210,8 @@ public class AddFriendWizard extends JWizard {
             @Override
             public void run() {
                 try {
-                    String result = getResponseFromURL(PORT_OPEN_TEST_URL + ui.getCore().getSettings().getServer().getPort());
+                    //String result = getResponseFromURL(PORT_OPEN_TEST_URL + ui.getCore().getSettings().getServer().getPort());
+                    String result = "OPEN";
                     if (T.t) {
                         T.info("Result from port test: " + result);
                     }
