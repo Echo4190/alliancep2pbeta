@@ -18,7 +18,7 @@ The next builds should be downloadable and installed through the new auto-update
 *Every issue you find should be reported to the issues tracker. Please add version and build number.*
 
 ===Jar File===
-http://alliancep2pbeta.googlecode.com/svn-history/r149/trunk-builds/alliance-v1.2.0pre-1281-jar.zip
+http://alliancep2pbeta.googlecode.com/svn-history/r239/trunk-builds/alliance-v1.2.0pre-1281-jar.zip
 
 ===Windows Binary===
-http://alliancep2pbeta.googlecode.com/svn-history/r149/trunk-builds/alliance-v1.2.0pre-1281.zip
+http://alliancep2pbeta.googlecode.com/svn-history/r239/trunk-builds/alliance-v1.2.0pre-1281.zip
