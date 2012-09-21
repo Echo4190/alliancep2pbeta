@@ -1,12 +1,12 @@
 #summary Developers Corner - Preview Build.
 #labels Phase-Deploy
-*v1.2.0pre build (1272)*
+*v1.2.0pre build (1281)*
 
 *This build is mainly to help people translate Alliance*, however it should still be stable enough to use on a daily basis.
 
 This build has only been tested on Windows but should still function under Linux and Mac...maybe.
 
-This build doesn't have the final version of DB. The next few releases after v1.2.0pre build (1272) may require re-hashing because we plan to better handling duplicates.
+This build doesn't have the final version of DB. The next few releases after v1.2.0pre build (1281) may require re-hashing because we plan to better handling duplicates.
 
 *You can migrating settings.xml (only) from older versions but it requires the following:*
 
@@ -18,7 +18,7 @@ The next builds should be downloadable and installed through the new auto-update
 *Every issue you find should be reported to the issues tracker. Please add version and build number.*
 
 ===Jar File===
-http://alliancep2pbeta.googlecode.com/svn-history/r149/trunk-builds/alliance-v1.2.0pre-1272-jar.zip
+http://alliancep2pbeta.googlecode.com/svn-history/r149/trunk-builds/alliance-v1.2.0pre-1281-jar.zip
 
 ===Windows Binary===
-http://alliancep2pbeta.googlecode.com/svn-history/r149/trunk-builds/alliance-v1.2.0pre-1272.zip
+http://alliancep2pbeta.googlecode.com/svn-history/r149/trunk-builds/alliance-v1.2.0pre-1281.zip
